@@ -1,6 +1,4 @@
-# HealthInsuranceManagementSystem
-
-# Smart Health Insurance Management System
+# Smart Health Insurance Management System - Capstone Insurance
 
 A comprehensive health insurance management solution featuring a modern Angular frontend and a robust .NET Web API backend. The system facilitates policy management, claims processing, and user administration for Admins, Hospital Managers, Insurance Agents, and Customers.
 
