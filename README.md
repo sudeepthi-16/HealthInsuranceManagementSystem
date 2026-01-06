@@ -69,7 +69,6 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
 
 4.  **Database Migration**: Apply migrations to create the database schema.
     ```bash
-    dotnet ef migrations add InitialCreate
     dotnet ef database update
     ```
 This will:
