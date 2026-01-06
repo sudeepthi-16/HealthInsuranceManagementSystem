@@ -1,0 +1,169 @@
+<mat-dialog-content>
+  <div class="dialog-container">
+    <!-- Header -->
+    <div class="dialog-header">
+      <h2 mat-dialog-title>Claim Review #{{ data.claim.claimId }}</h2>
+      <span class="claim-status" [class.status-submitted]="data.claim.status === 'Submitted'"
+        [class.status-inreview]="data.claim.status === 'InReview'"
+        [class.status-approved]="data.claim.status === 'Approved'"
+        [class.status-rejected]="data.claim.status === 'Rejected'">
+        {{ data.claim.status }}
+      </span>
+    </div>
+
+    <!-- Read-only message for non-reviewable claims -->
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+      <button mat-stroked-button color="primary" (click)="openViewDocsDialog()">
+        <mat-icon>folder_open</mat-icon> View Documents
+      </button>
+    </div>
+    <mat-card class="info-message" *ngIf="data.claim.status === 'Submitted'">
+      <mat-card-content>
+        <p><mat-icon>info</mat-icon> Medical Notes have not been added to this claim yet and cannot be reviewed yet.</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="info-message" *ngIf="data.claim.status !== 'Submitted' &&
+    data.claim.status !== 'InReview'">
+      <mat-card-content>
+        <p><mat-icon>info</mat-icon> This claim has already been reviewed and cannot be modified.</p>
+      </mat-card-content>
+    </mat-card>
+    <br><br>
+    <!-- Claim Information -->
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>Claim Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Policy #</span>
+            <span class="value">{{ data.claim.policyNumber }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Policy Status</span>
+            <span class="value">{{ data.claim.policyStatus }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Premium Status</span>
+            <span class="value" [style.color]="data.claim.premiumStatus === 'Paid' ? 'green' : 'red'">
+              {{ data.claim.premiumStatus }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="label">Policy Period</span>
+            <span class="value">
+              {{ data.claim.policyStartDate | date:'mediumDate' }} → {{ data.claim.policyEndDate | date:'mediumDate' }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="label">Hospital ID</span>
+            <span class="value">{{ data.claim.hospitalId }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Hospital Name</span>
+            <span class="value">{{ data.claim.hospitalName }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Plan ID</span>
+            <span class="value">{{ data.claim.planId }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Plan Name</span>
+            <span class="value">{{ data.claim.planName }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Total Coverage</span>
+            <span class="value amount">₹{{ data.claim.coverageAmount | number:'1.0-0' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Used Coverage</span>
+            <span class="value amount">₹{{ data.claim.usedCoverageAmount | number:'1.0-0' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Remaining Coverage</span>
+            <span class="value amount" [style.color]="data.claim.remainingCoverageAmount > 0 ? 'green' : 'red'">
+              ₹{{ data.claim.remainingCoverageAmount | number:'1.0-0' }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="label">Claim Amount Requested</span>
+            <span class="value amount">₹{{ data.claim.claimAmount | number:'1.0-0' }}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Notes Section -->
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>Notes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="notes-section">
+          <div class="note-item">
+            <strong>Customer Description:</strong>
+            <p>{{ data.claim.customerDescription || 'No description provided' }}</p>
+          </div>
+          <div class="note-item">
+            <strong>Hospital Notes:</strong>
+            <p>{{ data.claim.hospitalNotes || 'No notes provided' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Action Selection -->
+    <mat-card class="action-card" *ngIf="data.claim.status === 'InReview'">
+      <mat-card-header>
+        <mat-card-title>Review Action</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="action-selection">
+          <mat-button-toggle-group [(ngModel)]="selectedAction" (change)="onActionChange(selectedAction!)"
+            class="action-toggle-group">
+            <mat-button-toggle value="approve" class="approve-toggle">
+              <mat-icon>check_circle</mat-icon>
+              Approve
+            </mat-button-toggle>
+            <mat-button-toggle value="reject" class="reject-toggle">
+              <mat-icon>cancel</mat-icon>
+              Reject
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <!-- Conditional Fields -->
+        <div class="conditional-fields">
+          <!-- Approve Amount Field -->
+          <div class="field-container" *ngIf="selectedAction === 'approve'">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Approved Amount</mat-label>
+              <input matInput type="number" [(ngModel)]="approvedAmount" placeholder="Enter approved amount" required>
+              <span matPrefix>₹&nbsp;</span>
+              <mat-hint>Maximum: ₹{{ data.claim.claimAmount | number:'1.0-0' }}</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <!-- Reject Remarks Field -->
+          <div class="field-container" *ngIf="selectedAction === 'reject'">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Rejection Remarks</mat-label>
+              <textarea matInput rows="4" [(ngModel)]="remarks" placeholder="Enter reason for rejection" required>
+              </textarea>
+              <mat-hint>Please provide a detailed reason for rejection</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+  <button mat-raised-button color="primary" (click)="submitReview()" [disabled]="!canSubmit()"
+    *ngIf="data.claim.status === 'InReview'">
+    Submit Review
+  </button>
+</mat-dialog-actions>

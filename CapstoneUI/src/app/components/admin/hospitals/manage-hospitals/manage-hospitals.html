@@ -1,0 +1,62 @@
+<button mat-raised-button color="primary" (click)="openAdd()">
+  ➕ Add Hospital
+</button>
+
+<mat-form-field appearance="outline" style="margin-left: 16px; width: 250px;">
+  <mat-label>Search Hospitals</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Name or city">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="hospitalId">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let h">{{ h.hospitalId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="hospitalName">
+    <th mat-header-cell *matHeaderCellDef>Hospital</th>
+    <td mat-cell *matCellDef="let h">{{ h.hospitalName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let h">{{ h.city }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="network">
+    <th mat-header-cell *matHeaderCellDef>Network</th>
+    <td mat-cell *matCellDef="let h">
+      {{ h.isNetworkHospital ? 'Yes' : 'No' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let h">
+      <mat-slide-toggle
+        [checked]="h.isActive"
+        (change)="toggleStatus(h)">
+      </mat-slide-toggle>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let h">
+      <button mat-icon-button color="accent" (click)="openEdit(h)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+
+<mat-paginator
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons>
+</mat-paginator>

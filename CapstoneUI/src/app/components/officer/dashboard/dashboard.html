@@ -1,0 +1,128 @@
+<div class="dashboard-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Claims Officer Dashboard</h1>
+    <p class="subtitle">Monitor claims, policies, and payment activities</p>
+  </div>
+
+  <!-- KPI Stats -->
+  <div class="stats-grid">
+    <mat-card class="stat-card">
+      <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <mat-icon>account_balance_wallet</mat-icon>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Total Premium Collected</p>
+        <h2 class="stat-value">₹{{ summary?.totalPremiumCollected | number:'1.0-0' }}</h2>
+      </div>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+        <mat-icon>payments</mat-icon>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Total Claims Paid</p>
+        <h2 class="stat-value">₹{{ summary?.totalClaimsPaid | number:'1.0-0' }}</h2>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Section Header -->
+  <div class="section-header">
+    <h2>Analytics & Reports</h2>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="charts-grid">
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Claims by Officer</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas id="claimsByOfficer"></canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Policies by Status</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas id="policiesByStatus"></canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Claims by Status</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas id="claimsByStatus"></canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Claims by Hospital</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <canvas id="claimsByHospital"></canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card" style="grid-column: span 2;">
+      <mat-card-header>
+        <mat-card-title>High Value Claims (Utilization > 70%)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <table mat-table [dataSource]="highValueClaims" class="mat-elevation-z0" style="width: 100%;">
+
+          <!-- Policy ID Column -->
+          <ng-container matColumnDef="policyId">
+            <th mat-header-cell *matHeaderCellDef> Policy ID </th>
+            <td mat-cell *matCellDef="let element"> #{{element.policyId}} </td>
+          </ng-container>
+
+          <!-- Customer Name Column -->
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef> Customer </th>
+            <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+          </ng-container>
+
+          <!-- Utilization Column -->
+          <ng-container matColumnDef="utilization">
+            <th mat-header-cell *matHeaderCellDef> Utilization </th>
+            <td mat-cell *matCellDef="let element">
+              <span [style.color]="(element.totalAmountUsed / element.coverageAmount) > 0.9 ? 'red' : 'orange'"
+                style="font-weight: bold;">
+                {{ (element.totalAmountUsed / element.coverageAmount) | percent:'1.0-0' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Total Amount Used Column -->
+          <ng-container matColumnDef="totalAmountUsed">
+            <th mat-header-cell *matHeaderCellDef> Used </th>
+            <td mat-cell *matCellDef="let element"> ₹{{element.totalAmountUsed | number:'1.0-0'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="coverageAmount">
+            <th mat-header-cell *matHeaderCellDef> Coverage </th>
+            <td mat-cell *matCellDef="let element"> <span style="color:gray">/ ₹{{element.coverageAmount |
+                number:'1.0-0'}}</span> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="highValueClaims.length === 0" style="text-align: center; padding: 20px; color: gray;">
+          No High Value Claims found.
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

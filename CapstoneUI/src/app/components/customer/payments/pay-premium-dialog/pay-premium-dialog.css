@@ -1,0 +1,47 @@
+mat-dialog-content {
+  min-width: 400px;
+  overflow-y: visible !important;
+  margin-bottom: 8px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.form-instruction {
+  margin-bottom: 20px;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* Option custom styling */
+.option-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.option-spacer {
+  flex: 1;
+}
+
+.policy-ref {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.status-summary {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+.text-paid {
+  color: #2e7d32;
+}
+
+.text-due {
+  color: #ef6c00;
+  font-weight: 600;
+}

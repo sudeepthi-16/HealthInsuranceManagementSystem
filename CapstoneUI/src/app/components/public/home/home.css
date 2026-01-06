@@ -1,0 +1,234 @@
+.home-container {
+    min-height: 100vh;
+    background: #f5f5f5;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    margin: 0 0 32px 0;
+    opacity: 0.95;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    height: 48px;
+    padding: 0 32px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Plans Section */
+.plans-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.section-header p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+/* Loading & Empty States */
+.loading-container,
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: #666;
+}
+
+.loading-container mat-spinner {
+    margin: 0 auto 16px;
+}
+
+.empty-state mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #999;
+    margin-bottom: 16px;
+}
+
+/* Plans Grid */
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.plan-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.plan-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-card-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+mat-card-subtitle {
+    font-size: 14px;
+}
+
+.plan-details {
+    margin-top: 16px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.detail-item mat-icon {
+    color: #667eea;
+    margin-top: 2px;
+}
+
+.detail-item>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 4px;
+}
+
+.description {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.description p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+mat-card-actions {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+mat-card-actions button {
+    width: 100%;
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 24px;
+    margin-top: 64px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .section-header h2 {
+        font-size: 28px;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 48px 16px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .cta-button {
+        width: 100%;
+    }
+
+    .plans-section {
+        padding: 48px 16px;
+    }
+}

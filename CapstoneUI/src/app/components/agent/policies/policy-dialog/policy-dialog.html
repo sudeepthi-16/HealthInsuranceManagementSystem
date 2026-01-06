@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Create Policy</h2>
+
+<div mat-dialog-content style="display:flex; flex-direction:column; gap:16px">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Customer</mat-label>
+    <mat-select
+      [(ngModel)]="selectedCustomerId"
+      [ngModelOptions]="{ standalone: true }">
+
+      <mat-option *ngFor="let c of customers" [value]="c.userId">
+        {{ c.fullName }} ({{ c.email }})
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Insurance Plan</mat-label>
+    <mat-select
+      [(ngModel)]="selectedPlanId"
+      [ngModelOptions]="{ standalone: true }"
+      [disabled]="!selectedCustomerId">
+
+      <mat-option *ngFor="let p of plans" [value]="p.planId">
+        {{ p.planName }} – ₹{{ p.coverageAmount }}
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="createPolicy()"
+    [disabled]="!selectedCustomerId || !selectedPlanId">
+    Create
+  </button>
+</div>

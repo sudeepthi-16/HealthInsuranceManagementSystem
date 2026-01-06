@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Pay Premium</h2>
+
+<mat-dialog-content>
+  <div class="form-instruction">
+    Select an active policy to make a premium payment.
+  </div>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Select Policy</mat-label>
+    <mat-select [(ngModel)]="policyId">
+      <mat-option *ngFor="let p of policies" [value]="p.policyId"
+        [disabled]="p.premiumStatus === 'Paid' || p.status !== 'Active'">
+
+        <div class="option-content">
+          <span class="policy-ref">Policy #{{ p.policyId }}</span>
+          <span class="option-spacer"></span>
+          <span class="status-summary" [class.text-paid]="p.premiumStatus === 'Paid'"
+            [class.text-due]="p.premiumStatus !== 'Paid'">
+            Premium: {{ p.premiumStatus }}
+          </span>
+        </div>
+
+      </mat-option>
+    </mat-select>
+    <mat-hint>Shows only Active policies</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Amount to Pay (₹)</mat-label>
+    <input matInput type="number" [(ngModel)]="amount" placeholder="Enter full annual premium">
+    <mat-hint *ngIf="selectedPolicyPremium">
+      Full Annual Premium: ₹{{ selectedPolicyPremium }}
+    </mat-hint>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="submitting">
+    Cancel
+  </button>
+
+  <button mat-raised-button color="primary" (click)="submit()" [disabled]="submitting">
+    Pay Now
+  </button>
+</mat-dialog-actions>

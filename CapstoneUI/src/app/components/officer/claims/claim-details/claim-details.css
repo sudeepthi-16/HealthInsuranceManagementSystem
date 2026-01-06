@@ -1,0 +1,227 @@
+.dialog-container {
+    max-width: 700px;
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.dialog-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.claim-status {
+    padding: 6px 16px;
+    border-radius: 16px;
+    background: #e0e0e0;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.claim-status.in-review {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+/* Status Colors */
+.claim-status.status-submitted {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.claim-status.status-inreview {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.claim-status.status-approved {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.claim-status.status-rejected {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.claim-status.status-paid {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Info Cards */
+.info-card {
+    margin-bottom: 20px;
+}
+
+.info-card mat-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-item .label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item .value {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.info-item .value.amount {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1976d2;
+}
+
+/* Notes Section */
+.notes-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.note-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.note-item strong {
+    color: #666;
+    font-size: 14px;
+}
+
+.note-item p {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Action Card */
+.action-card {
+    margin-bottom: 20px;
+    border: 2px solid #1976d2;
+}
+
+.action-card mat-card-title {
+    color: #1976d2;
+}
+
+.action-selection {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.action-toggle-group {
+    width: 100%;
+    display: flex;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-toggle-group mat-button-toggle {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 0;
+}
+
+.action-toggle-group mat-button-toggle mat-icon {
+    margin-right: 8px;
+}
+
+.approve-toggle.mat-button-toggle-checked {
+    background-color: #4caf50 !important;
+    color: white !important;
+}
+
+.reject-toggle.mat-button-toggle-checked {
+    background-color: #f44336 !important;
+    color: white !important;
+}
+
+/* Conditional Fields */
+.conditional-fields {
+    margin-top: 24px;
+    min-height: 120px;
+}
+
+.field-container {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Info Message */
+.info-message {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.info-message mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-message mat-icon {
+    color: #2196f3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dialog-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .action-toggle-group mat-button-toggle {
+        font-size: 14px;
+    }
+}

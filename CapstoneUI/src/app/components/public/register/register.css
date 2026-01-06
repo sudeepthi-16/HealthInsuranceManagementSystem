@@ -1,0 +1,83 @@
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 16px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+mat-card-title h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.register-btn {
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.button-spinner {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.login-link {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.login-link p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.login-link a {
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .register-card {
+        padding: 20px;
+    }
+
+    mat-card-title h1 {
+        font-size: 24px;
+    }
+}

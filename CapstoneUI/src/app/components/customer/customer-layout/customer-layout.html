@@ -1,0 +1,92 @@
+<!-- TOP NAVBAR -->
+<mat-toolbar class="top-navbar">
+  <button mat-icon-button (click)="drawer.toggle()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="app-title">Capstone Insurance - Customer Portal</span>
+
+  <span class="spacer"></span>
+
+  <!-- Notification Bell -->
+  <ng-container *ngIf="auth.getUserRole() === 'Customer'">
+    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+      <mat-icon [matBadge]="notificationService.unreadCount()"
+        [matBadgeHidden]="notificationService.unreadCount() === 0" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+    <mat-menu #notificationMenu="matMenu">
+      <div *ngIf="notificationService.unreadCount() === 0" style="padding: 10px; font-style: italic;">
+        No unread notifications
+      </div>
+      <button mat-menu-item *ngFor="let n of notificationService.unreadNotifications()">
+        <div style="display: flex; flex-direction: column; line-height: 1.2;">
+          <span>{{ n.message }}</span>
+          <small style="opacity: 0.7;">{{ n.createdDate | date:'short' }}</small>
+        </div>
+        <mat-icon (click)="markAsRead(n.notificationId, $event)" title="Mark as Read"
+          style="margin-left: auto; font-size: 18px;">check_circle</mat-icon>
+      </button>
+      <button mat-menu-item routerLink="/customer/notifications"
+        style="border-top: 1px solid #ccc; font-weight: bold; justify-content: center;">
+        View All Notifications
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <!-- User Menu -->
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-btn">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+      <mat-icon>person</mat-icon>
+      <span>{{ auth.getUserRole() }}</span>
+    </div>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer mode="side" opened class="sidenav">
+    <mat-nav-list>
+
+      <a mat-list-item routerLink="/customer/dashboard" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+
+      <a mat-list-item routerLink="/customer/policies" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>description</mat-icon>
+        <span matListItemTitle>My Policies</span>
+      </a>
+
+      <a mat-list-item routerLink="/customer/claims" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>assignment</mat-icon>
+        <span matListItemTitle>My Claims</span>
+      </a>
+
+      <a mat-list-item routerLink="/customer/payments" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>receipt_long</mat-icon>
+        <span matListItemTitle>My Payments</span>
+      </a>
+      <a mat-list-item routerLink="/customer/notifications" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>notifications</mat-icon>
+        <span matListItemTitle>Notifications</span>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

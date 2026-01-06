@@ -1,0 +1,110 @@
+/* Dialog Title */
+.dialog-title {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 24px;
+}
+
+.policy-id {
+  font-size: 14px;
+  color: #7f8c8d;
+  font-weight: 400;
+}
+
+/* Content */
+.dialog-content {
+  padding: 24px !important;
+  min-width: 450px;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.grid-item label {
+  font-size: 12px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.grid-item .value {
+  font-size: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.grid-item .value.highlight {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+/* Status Badges (Reused) */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.status-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-inactive {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.premium-paid {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.premium-due {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.premium-overdue {
+  background: #fbe9e7;
+  color: #d84315;
+}
+
+.highlight-text {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #1a237e;
+}
+
+.text-warn {
+  color: #d32f2f;
+}
+
+.text-success {
+  color: #2e7d32;
+}
+
+.font-bold {
+  font-weight: 600;
+}

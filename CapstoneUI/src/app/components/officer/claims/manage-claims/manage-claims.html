@@ -1,0 +1,72 @@
+<h2>Claims</h2>
+
+<mat-form-field appearance="outline" style="width:300px">
+  <mat-label>Search claims</mat-label>
+  <input matInput placeholder="Claim / Customer / Hospital" (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<!--  STATUS FILTER -->
+<mat-form-field appearance="outline" style="width: 200px; margin-left: 16px;">
+  <mat-label>Filter by Status</mat-label>
+  <mat-select (selectionChange)="applyStatusFilter($event.value)" [value]="statusFilter">
+    <mat-option *ngFor="let s of statuses" [value]="s">
+      {{ s }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p *ngIf="loading()">Loading claims...</p>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z2" *ngIf="!loading()">
+
+  <ng-container matColumnDef="claimId">
+    <th mat-header-cell *matHeaderCellDef>Claim ID</th>
+    <td mat-cell *matCellDef="let c">
+      <a (click)="openDetails(c)" style="cursor:pointer">
+        {{ c.claimId }}
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="customerName">
+    <th mat-header-cell *matHeaderCellDef>Customer</th>
+    <td mat-cell *matCellDef="let c">{{ c.customerName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="hospitalName">
+    <th mat-header-cell *matHeaderCellDef>Hospital</th>
+    <td mat-cell *matCellDef="let c">{{ c.hospitalName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let c">
+      <span class="status-badge" [class.status-submitted]="c.status === 'Submitted'"
+        [class.status-inreview]="c.status === 'InReview'" [class.status-approved]="c.status === 'Approved'"
+        [class.status-rejected]="c.status === 'Rejected'" [class.status-paid]="c.status === 'Paid'">
+        {{ c.status }}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="submittedDate">
+    <th mat-header-cell *matHeaderCellDef>Submitted</th>
+    <td mat-cell *matCellDef="let c">
+      {{ c.submittedDate | date:'mediumDate'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let c">
+      <button mat-button (click)="openDetails(c)">View</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+</mat-paginator>

@@ -1,0 +1,29 @@
+<div class="notifications-container">
+    <h2>Notifications</h2>
+
+    <div class="controls">
+        <mat-button-toggle-group [value]="filter()" (change)="setFilter($event.value)">
+            <mat-button-toggle value="all">All</mat-button-toggle>
+            <mat-button-toggle value="unread">Unread Only</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <mat-card class="notification-list">
+        <mat-list>
+            <div *ngIf="viewNotifications().length === 0" class="no-notifications">
+                No notifications found.
+            </div>
+            <mat-list-item *ngFor="let n of viewNotifications()" [class.unread]="!n.isRead">
+                <mat-icon matListItemIcon>notifications</mat-icon>
+                <div matListItemTitle>{{ n.message }}</div>
+                <div matListItemLine>{{ n.createdDate | date:'mediumDate' }}</div>
+                <button mat-icon-button (click)="markAsRead(n.notificationId)" *ngIf="!n.isRead" title="Mark as Read">
+                    <mat-icon>check_circle</mat-icon>
+                </button>
+                <button mat-icon-button disabled *ngIf="n.isRead">
+                    <mat-icon>done_all</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>

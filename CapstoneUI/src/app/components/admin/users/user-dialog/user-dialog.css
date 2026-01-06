@@ -1,0 +1,149 @@
+/* Dialog Container */
+:host {
+    display: block;
+}
+
+/* Dialog Title Styling */
+h2[mat-dialog-title] {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    /* Standard Black */
+    margin: 0;
+    padding: 24px 24px 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    /* Standard thin border */
+}
+
+/* Dialog Content */
+mat-dialog-content {
+    padding: 24px !important;
+    /* Standard padding */
+    min-width: 500px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: auto !important;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Fields */
+mat-form-field {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Input Fields */
+mat-form-field input {
+    font-size: 15px;
+    padding: 8px 0;
+}
+
+/* Labels */
+mat-form-field mat-label {
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+
+
+/* Error Messages */
+mat-error {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #f44336;
+}
+
+/* Checkbox Styling */
+mat-checkbox {
+    margin-top: 8px;
+}
+
+mat-checkbox label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Dialog Actions */
+mat-dialog-actions {
+    padding: 20px 24px 24px 24px !important;
+    border-top: 2px solid #f0f0f0;
+    gap: 12px;
+}
+
+/* Buttons */
+button {
+    min-width: 120px;
+    height: 42px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+button[mat-raised-button] {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+button[mat-raised-button]:hover:not([disabled]) {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+button[mat-stroked-button]:hover:not([disabled]) {
+    background-color: rgba(244, 67, 54, 0.05);
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Select Dropdown */
+mat-select {
+    font-size: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    mat-dialog-content {
+        min-width: 320px;
+        padding: 24px 16px !important;
+    }
+
+    h2[mat-dialog-title] {
+        font-size: 20px;
+        padding: 20px 16px 16px 16px;
+    }
+
+    mat-dialog-actions {
+        padding: 16px !important;
+    }
+
+    button {
+        min-width: 100px;
+        height: 38px;
+        font-size: 14px;
+    }
+}
+
+/* Loading State (if needed) */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}

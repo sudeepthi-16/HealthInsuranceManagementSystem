@@ -1,0 +1,58 @@
+/* Status Badge Styling */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+/* Policy Status Colors */
+.status-badge.status-active {
+    background: #e8f5e9;
+    /* Light Green */
+    color: #2e7d32;
+    /* Green */
+}
+
+.status-badge.status-inactive {
+    background: #ffebee;
+    /* Light Red */
+    color: #c62828;
+    /* Red */
+}
+
+/* Suspended Status - Red */
+.status-badge.status-suspended {
+    background: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+/* Premium Status Colors */
+.status-badge.premium-paid {
+    background: #e3f2fd;
+    /* Light Blue */
+    color: #1976d2;
+    /* Blue */
+}
+
+.status-badge.premium-due {
+    background: #fff3e0;
+    /* Light Orange */
+    color: #ef6c00;
+    /* Orange */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+}
+
+th {
+    font-weight: 600;
+    color: #555;
+    background-color: #f8f9fa;
+}

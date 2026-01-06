@@ -1,0 +1,75 @@
+<h2>Hospital Payments</h2>
+
+<mat-card>
+
+  <!-- SEARCH -->
+  <mat-form-field appearance="outline" style="width: 320px; margin-bottom: 12px;">
+    <mat-label>Search payments</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Payment ID, Claim ID, customer" />
+  </mat-form-field>
+
+  <!-- TABLE -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+    <!-- Payment ID -->
+    <ng-container matColumnDef="paymentId">
+      <th mat-header-cell *matHeaderCellDef>Payment ID</th>
+      <td mat-cell *matCellDef="let p">{{ p.paymentId }}</td>
+    </ng-container>
+
+    <!-- Claim ID -->
+    <ng-container matColumnDef="claimId">
+      <th mat-header-cell *matHeaderCellDef>Claim ID</th>
+      <td mat-cell *matCellDef="let p">
+        {{ p.claimId ?? '-' }}
+      </td>
+    </ng-container>
+
+    <!-- Insurance Company (STATIC) -->
+    <ng-container matColumnDef="insuranceCompany">
+      <th mat-header-cell *matHeaderCellDef>Insurance Company</th>
+      <td mat-cell *matCellDef="let p">
+        Capstone Insurance Company
+      </td>
+    </ng-container>
+
+    <!-- Customer Code -->
+    <ng-container matColumnDef="customerCode">
+      <th mat-header-cell *matHeaderCellDef>Customer Code</th>
+      <td mat-cell *matCellDef="let p">{{ p.customerCode }}</td>
+    </ng-container>
+
+    <!-- Customer Name -->
+    <ng-container matColumnDef="userFullName">
+      <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+      <td mat-cell *matCellDef="let p">{{ p.userFullName }}</td>
+    </ng-container>
+
+    <!-- Amount -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let p">
+        {{ p.amount | currency:'INR' }}
+      </td>
+    </ng-container>
+
+
+
+    <!-- Payment Date -->
+    <ng-container matColumnDef="paymentDate">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let p">
+        {{ p.paymentDate | date:'mediumDate' }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+
+  <!-- PAGINATOR -->
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  </mat-paginator>
+
+</mat-card>

@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Raise New Claim</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="claim-form">
+
+    <div class="form-instruction">
+      Please provide details about your claim. Ensure the amount matches your bill.
+    </div>
+
+    <!-- Claim Amount -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Claim Amount (₹)</mat-label>
+      <input matInput type="number" formControlName="claimAmount" placeholder="e.g. 50000">
+      <mat-error *ngIf="form.get('claimAmount')?.hasError('required')">
+        Claim amount is required
+      </mat-error>
+      <mat-error *ngIf="form.get('claimAmount')?.hasError('min')">
+        Amount must be greater than 0
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Hospital Dropdown -->
+    <mat-form-field appearance="outline" class="full-width" *ngIf="hospitalsLoaded">
+      <mat-label>Select Hospital</mat-label>
+      <mat-select formControlName="hospitalId">
+        <mat-option *ngIf="hospitals.length === 0" disabled>
+          No active hospitals available
+        </mat-option>
+        <mat-option *ngFor="let h of hospitals" [value]="h.hospitalId">
+          {{ h.hospitalName }} ({{ h.city }})
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('hospitalId')?.hasError('required')">
+        Hospital selection is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description / Reason</mat-label>
+      <textarea matInput rows="4" formControlName="customerDescription"
+        placeholder="Briefly describe the reason for the claim...">
+      </textarea>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submit()" [disabled]="form.invalid">
+    Submit Claim
+  </button>
+</mat-dialog-actions>

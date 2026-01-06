@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="dialog-title">
+  <span>Claim Details</span>
+  <span class="claim-id">#{{ claim.claimId }}</span>
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="info-grid">
+
+    <!-- Status Section -->
+    <div class="grid-item">
+      <label>Status</label>
+      <span class="status-badge" [class.status-submitted]="claim.status === 'Submitted'"
+        [class.status-inreview]="claim.status === 'InReview'" [class.status-approved]="claim.status === 'Approved'"
+        [class.status-rejected]="claim.status === 'Rejected'">
+        {{ claim.status }}
+      </span>
+    </div>
+
+    <!-- Submitted On -->
+    <div class="grid-item">
+      <label>Submitted On</label>
+      <div class="value">{{ claim.submittedDate | date }}</div>
+    </div>
+
+    <!-- Claim Amount -->
+    <div class="grid-item">
+      <label>Claim Amount</label>
+      <div class="value highlight">{{ claim.claimAmount | currency:'INR' }}</div>
+    </div>
+
+    <!-- Approved Amount -->
+    <div class="grid-item">
+      <label>Approved Amount</label>
+      <div class="value highlight-approved" *ngIf="claim.approvedAmount !== undefined">
+        {{ claim.approvedAmount | currency:'INR' }}
+      </div>
+      <div class="value dimmed" *ngIf="claim.approvedAmount === undefined">
+        Pending
+      </div>
+    </div>
+
+    <!-- Hospital -->
+    <div class="grid-item full-width">
+      <label>Hospital</label>
+      <div class="value">{{ claim.hospitalName || 'N/A' }}</div>
+    </div>
+
+    <!-- Customer Description -->
+    <div class="grid-item full-width section">
+      <label>Your Description</label>
+      <p class="description-text">{{ claim.customerDescription || '—' }}</p>
+    </div>
+
+    <!-- Hospital Notes -->
+    <div class="grid-item full-width section" *ngIf="claim.hospitalNotes">
+      <label>Hospital Notes</label>
+      <p class="description-text">{{ claim.hospitalNotes }}</p>
+    </div>
+
+    <!-- Officer Remarks -->
+    <div class="grid-item full-width section" *ngIf="claim.officerRemarks">
+      <label>Officer Remarks</label>
+      <p class="description-text">{{ claim.officerRemarks }}</p>
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

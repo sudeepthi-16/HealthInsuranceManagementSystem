@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>
+  {{ plan ? 'Edit Plan' : 'Create Plan' }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+
+    <!-- Plan Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Plan Name</mat-label>
+      <input matInput formControlName="planName">
+      <mat-error *ngIf="form.get('planName')?.hasError('required')">
+        Plan name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Coverage Amount -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Coverage Amount (₹)</mat-label>
+      <input matInput type="number" formControlName="coverageAmount">
+      <mat-error *ngIf="form.get('coverageAmount')?.hasError('required')">
+        Coverage amount is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Duration -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Duration (Months)</mat-label>
+      <input matInput type="number" formControlName="durationMonths">
+      <mat-error *ngIf="form.get('durationMonths')?.hasError('required')">
+        Duration is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+      <mat-error *ngIf="form.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button color="warn" (click)="cancel()">
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="form.invalid">
+    {{ plan ? 'Update' : 'Create' }}
+  </button>
+</mat-dialog-actions>

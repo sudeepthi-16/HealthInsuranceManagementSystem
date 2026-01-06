@@ -1,0 +1,25 @@
+mat-dialog-content {
+    min-width: 450px;
+    overflow-y: visible !important;
+    /* Allow dropdowns to overflow if needed */
+}
+
+.claim-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.form-instruction {
+    margin-bottom: 16px;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}

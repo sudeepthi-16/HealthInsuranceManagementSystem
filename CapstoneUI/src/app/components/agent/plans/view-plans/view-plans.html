@@ -1,0 +1,32 @@
+<h2>Available Insurance Plans</h2>
+
+<div *ngIf="loading()" class="loading-state">
+    <p>Loading plans...</p>
+</div>
+
+<div *ngIf="!loading() && plans().length === 0" class="empty-state">
+    <p>No active plans available at the moment.</p>
+</div>
+
+<div class="plans-grid" *ngIf="!loading() && plans().length > 0">
+    <mat-card *ngFor="let plan of plans()" class="plan-card">
+        <mat-card-header>
+            <div mat-card-avatar class="plan-avatar">
+                <mat-icon>security</mat-icon>
+            </div>
+            <mat-card-title>{{ plan.planName }}</mat-card-title>
+            <mat-card-subtitle>Coverage: {{ plan.coverageAmount | currency:'INR' }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="plan-details">
+                <p class="description">{{ plan.description || 'No description available.' }}</p>
+
+                <div class="premium-info">
+                    <span class="label">Premium Amount:</span>
+                    <span class="value">{{ plan.basePremium | currency:'INR' }}</span>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

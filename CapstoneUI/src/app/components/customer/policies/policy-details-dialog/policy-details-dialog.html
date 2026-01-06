@@ -1,0 +1,72 @@
+<h2 mat-dialog-title class="dialog-title">
+  <span>Policy Details</span>
+  <span class="policy-id">#{{ policy.policyId }}</span>
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="info-grid">
+
+    <!-- Status Section -->
+    <div class="grid-item">
+      <label>Status</label>
+      <span class="status-badge" [class.status-active]="policy.status === 'Active'">
+        {{ policy.status }}
+      </span>
+    </div>
+
+    <div class="grid-item">
+      <label>Premium Status</label>
+      <span class="status-badge" [class.premium-paid]="policy.premiumStatus === 'Paid'"
+        [class.premium-due]="policy.premiumStatus === 'Due'">
+        {{ policy.premiumStatus }}
+      </span>
+    </div>
+
+    <!-- Plan Info -->
+    <div class="grid-item full-width">
+      <label>Plan Name</label>
+      <div class="value highlight-text">{{ policy.planName }}</div>
+    </div>
+
+    <div class="grid-item">
+      <label>Total Coverage</label>
+      <div class="value">{{ policy.coverageAmount | currency:'INR' }}</div>
+    </div>
+
+    <div class="grid-item">
+      <label>Used Coverage</label>
+      <div class="value text-warn">{{ policy.claimsUsedAmount | currency:'INR' }}</div>
+    </div>
+
+    <div class="grid-item">
+      <label>Remaining Coverage</label>
+      <div class="value text-success font-bold">{{ remainingCoverage | currency:'INR' }}</div>
+    </div>
+
+    <div class="grid-item">
+      <label>Total Premium</label>
+      <div class="value">{{ policy.totalPremium | currency:'INR' }}</div>
+    </div>
+
+    <!-- Dates -->
+    <div class="grid-item">
+      <label>Start Date</label>
+      <div class="value">{{ policy.startDate | date }}</div>
+    </div>
+
+    <div class="grid-item">
+      <label>End Date</label>
+      <div class="value">{{ policy.endDate | date }}</div>
+    </div>
+
+    <div class="grid-item full-width" *ngIf="policy.nextDueDate">
+      <label>Next Premium Due</label>
+      <div class="value">{{ policy.nextDueDate | date }}</div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

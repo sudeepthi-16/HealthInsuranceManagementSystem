@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>
+  Create {{ role === 'Hospital' ? 'Hospital Manager' : role }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+
+    <!-- Full Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName">
+      <mat-error *ngIf="form.get('fullName')?.hasError('required')">
+        Full name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="form.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Please enter a valid email
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="form.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Hospital Dropdown (only for Hospital role) -->
+    <mat-form-field *ngIf="role === 'Hospital' && hospitalsLoaded" appearance="outline" class="full-width">
+      <mat-label>Select Hospital</mat-label>
+      <mat-select formControlName="hospitalId" required>
+        <mat-option *ngFor="let h of hospitals" [value]="h.hospitalId">
+          {{ h.hospitalName }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('hospitalId')?.hasError('required')">
+        Hospital selection is required
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" type="button" (click)="save()" [disabled]="form.invalid">
+    Create
+  </button>
+</mat-dialog-actions>

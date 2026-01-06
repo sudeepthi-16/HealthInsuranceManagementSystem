@@ -1,0 +1,85 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Capstone Insurance Management System</h1>
+      <p class="hero-subtitle">Comprehensive insurance solutions for your peace of mind</p>
+      <div class="hero-actions">
+        <button mat-raised-button color="primary" routerLink="/register" class="cta-button">
+          <mat-icon>person_add</mat-icon>
+          Get Started
+        </button>
+        <button mat-stroked-button color="primary" routerLink="/login" class="cta-button">
+          <mat-icon>login</mat-icon>
+          Sign In
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insurance Plans Section -->
+  <section class="plans-section">
+    <div class="section-header">
+      <h2>Our Insurance Plans</h2>
+      <p>Choose the perfect plan for your needs</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="(plans$ | async) === null" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading plans...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="(plans$ | async)?.length === 0" class="empty-state">
+      <mat-icon>info</mat-icon>
+      <p>No insurance plans available at the moment</p>
+    </div>
+
+    <!-- Plans Grid -->
+    <div class="plans-grid" *ngIf="(plans$ | async) as plans">
+      <mat-card *ngFor="let plan of plans" class="plan-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="plan-icon">shield</mat-icon>
+          <mat-card-title>{{ plan.planName }}</mat-card-title>
+          <mat-card-subtitle>{{ plan.durationMonths }} months coverage</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="plan-details">
+            <div class="detail-item">
+              <mat-icon>account_balance_wallet</mat-icon>
+              <div>
+                <span class="detail-label">Coverage Amount</span>
+                <span class="detail-value">₹{{ plan.coverageAmount | number }}</span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <mat-icon>payments</mat-icon>
+              <div>
+                <span class="detail-label">Premium</span>
+                <span class="detail-value">₹{{ plan.basePremium | number }}/year</span>
+              </div>
+            </div>
+
+            <div class="description">
+              <p>{{ plan.description }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/register">
+            Choose Plan
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Capstone Insurance Management System. All rights reserved.</p>
+  </footer>
+</div>

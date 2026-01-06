@@ -1,0 +1,12 @@
+<!-- SHOW ONLY WHEN USER IS NOT LOGGED IN -->
+<mat-toolbar color="primary" *ngIf="!auth.isLoggedIn()">
+
+  <span style="font-weight: bold;">Capstone Insurance</span>
+
+  <span style="flex: 1 1 auto;"></span>
+
+  <button mat-button routerLink="/home">Home</button>
+  <button mat-button routerLink="/login">Login</button>
+  <button mat-button routerLink="/register">Customer Register</button>
+
+</mat-toolbar>

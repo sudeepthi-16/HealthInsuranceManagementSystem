@@ -1,0 +1,66 @@
+<div class="dashboard-container">
+
+  <div class="page-header">
+    <h1>Welcome Back!</h1>
+    <p class="subtitle">Manage your insurance portfolio, claims, and payments.</p>
+  </div>
+
+  <div class="dashboard-grid">
+
+    <!-- View Policies -->
+    <mat-card class="dashboard-card card-policies" (click)="navigate('policies')">
+      <div class="icon-wrapper">
+        <mat-icon>description</mat-icon>
+      </div>
+      <h3>My Policies</h3>
+      <p>View your active and expired insurance policies</p>
+    </mat-card>
+
+    <!-- View Claims -->
+    <mat-card class="dashboard-card card-claims" (click)="navigate('claims')">
+      <div class="icon-wrapper">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <h3>My Claims</h3>
+      <p>Track submitted and processed insurance claims</p>
+    </mat-card>
+
+    <!-- Payment History -->
+    <mat-card class="dashboard-card card-payments" (click)="navigate('payments')">
+      <div class="icon-wrapper">
+        <mat-icon>receipt_long</mat-icon>
+      </div>
+      <h3>Payment History</h3>
+      <p>View premium payments and claim payouts</p>
+    </mat-card>
+
+    <!-- Pay Premium -->
+    <mat-card class="dashboard-card card-pay" (click)="navigate('payments')">
+      <div class="icon-wrapper">
+        <mat-icon>payments</mat-icon>
+      </div>
+      <h3>Pay Premium</h3>
+      <p>Pay your annual policy premium securely</p>
+    </mat-card>
+
+    <!-- Create Policy (Raise Claim context usually means create policy or create claim, assuming create policy/buy logic) -->
+    <!-- Updated icon/text based on UI context -->
+    <mat-card class="dashboard-card card-create-policy" (click)="navigate('policies')">
+      <div class="icon-wrapper">
+        <mat-icon>add_circle</mat-icon>
+      </div>
+      <h3>Raise Claim</h3>
+      <p>Submit a new claim for an active policy</p>
+    </mat-card>
+
+    <!-- Notifications -->
+    <mat-card class="dashboard-card card-notifications" (click)="navigate('notifications')">
+      <div class="icon-wrapper">
+        <mat-icon>notifications</mat-icon>
+      </div>
+      <h3>Notifications</h3>
+      <p>View alerts and updates</p>
+    </mat-card>
+
+  </div>
+</div>

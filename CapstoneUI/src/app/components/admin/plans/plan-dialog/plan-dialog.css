@@ -1,0 +1,16 @@
+/* Dialog Title Styling */
+h2[mat-dialog-title] {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    padding: 24px 24px 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Dialog Content */
+mat-dialog-content {
+    padding: 24px !important;
+    min-width: 500px;
+    overflow: visible !important;
+}

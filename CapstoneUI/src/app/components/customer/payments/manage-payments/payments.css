@@ -1,0 +1,44 @@
+mat-card {
+    padding: 16px;
+}
+
+table {
+    width: 100%;
+}
+
+h2 {
+    font-weight: 500;
+    color: #333;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Status Badge Styling */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+/* Payment Type Colors */
+.status-badge.status-premium {
+    background: #e8f5e9;
+    /* Light Green */
+    color: #2e7d32;
+    /* Green */
+}
+
+.status-badge.status-claim {
+    background: #f3e5f5;
+    /* Light Purple */
+    color: #7b1fa2;
+    /* Purple */
+}
