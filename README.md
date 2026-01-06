@@ -105,8 +105,20 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
 cd CapStoneAPI
 dotnet test
 ```
+### Seeded Data
 
+In the DataSeeder (Dev env only) an admin(Full Name: System Admin) is created by default with the below credentials:
+```
+Email : admin@t.com
+Password : Admin@123
+```
+Admin can be uses to login and he can create the other users, customer can self register
 
+A customer (Full Name: Rahul Dravid) by default is also created whos policy end date has passed (to show expired status) his credentials are:
+```
+Email : cust1@chk.co
+Password: Pass@123
+```
 ## 🏗 Project Structure
 
 ```
