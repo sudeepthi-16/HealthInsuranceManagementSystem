@@ -90,7 +90,7 @@
         <mat-icon>block</mat-icon>
       </button>
 
-      <button mat-icon-button color="accent" (click)="openRenewPolicy(p.policyId)" [disabled]="p.status !== 'Active'"
+      <button mat-icon-button color="accent" (click)="openRenewPolicy(p.policyId)" [disabled]="p.status !== 'Active' && p.status !== 'Expired'"
         matTooltip="Renew Policy">
         <mat-icon>autorenew</mat-icon>
       </button>

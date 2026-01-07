@@ -189,8 +189,8 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
 
-builder.Logging.ClearProviders();//temporary
-builder.Logging.AddConsole();//temporary
+//builder.Logging.ClearProviders();//temporary for debugging
+//builder.Logging.AddConsole();//temporary for debugging
 
 
 // Seeder
@@ -208,7 +208,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     
-    app.UseDeveloperExceptionPage(); //temporary
+    //app.UseDeveloperExceptionPage(); //temporary for debuging
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
@@ -221,8 +221,8 @@ app.UseRouting();
 
 app.UseCors("AllowAngular");
 
-// Global Exception Handling 
-//app.UseMiddleware<ExceptionMiddleware>();
+//Global Exception Handling 
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

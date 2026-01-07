@@ -54,7 +54,7 @@ namespace CapStoneAPI.Services
                 ClaimsTableId = uploadDto.ClaimId,
                 FileName = uploadDto.File.FileName,
                 FilePath = uniqueFileName,
-                UploadedBy = user.UserName, // or FullName
+                UploadedBy = user.UserName, 
                 UploadDate = DateTime.Now
             };
 

@@ -91,7 +91,7 @@ public class PolicyService : IPolicyService
         return filtered.Select(MapToDto).ToList();
     }
 
-    // 3️⃣ GET SINGLE POLICY (OWNERSHIP CHECK)
+    //  GET SINGLE POLICY
     public async Task<PolicyResponseDto> GetPolicyByIdAsync(
         int policyId, string userId, string role)
     {
@@ -109,7 +109,7 @@ public class PolicyService : IPolicyService
         return MapToDto(policy);
     }
 
-    // 4️⃣ SUSPEND POLICY (Insurance Agent)
+    //  SUSPEND POLICY (Insurance Agent)
     public async Task SuspendPolicyAsync(int policyId)
     {
         var policy = await _policyRepo.GetByIdAsync(policyId)
@@ -128,7 +128,7 @@ public class PolicyService : IPolicyService
             policy.PolicyId);
     }
 
-    // 5️⃣ RENEW POLICY (Insurance Agent)
+    //  RENEW POLICY (Insurance Agent)
     public async Task RenewPolicyAsync(int policyId, int additionalMonths)
     {
         var policy = await _policyRepo.GetByIdAsync(policyId)
@@ -156,7 +156,7 @@ public class PolicyService : IPolicyService
             policy.PolicyId);
     }
 
-    // 🔁 AUTO EXPIRY
+    // AUTO EXPIRY
     private async Task UpdateExpiredPoliciesAsync(IEnumerable<Policy> policies)
     {
         foreach (var policy in policies)
@@ -164,10 +164,7 @@ public class PolicyService : IPolicyService
             if (policy.EndDate < DateTime.Today && policy.Status != "Expired")
             {
                 policy.Status = "Expired";
-                // We should save this change if we want it to persist, but existing code didn't save?
-                // The existing code was modifying objects in memory. The controller calls GetPoliciesAsync which calls this.
-                // But without SaveAsync, it's just visual.
-                // Assuming we should notify user.
+                
                 
                 await _notificationService.CreateNotificationAsync(
                     policy.UserId,
@@ -177,7 +174,7 @@ public class PolicyService : IPolicyService
             }
         }
     }
-    //added now 
+    
     private static void UpdatePremiumDueStatus(IEnumerable<Policy> policies)
     {
         foreach (var policy in policies)

@@ -27,7 +27,7 @@ namespace CapStoneAPI.Services
             _notificationService = notificationService;
         }
 
-        // 1️⃣ Customer submits claim
+        // Customer submits claim
         public async Task CreateClaimAsync(CreateClaimDto dto, string customerId)
         {
             var policy = await _policyRepo.GetByIdAsync(dto.PolicyId)
@@ -68,7 +68,7 @@ namespace CapStoneAPI.Services
                 claim.ClaimsTableId);
         }
 
-        // 2️⃣ Role-based claim visibility
+        //  Role-based claim visibility
         public async Task<List<object>> GetClaimsAsync(string userId, string role)
         {
             var claims = await _claimRepo.GetAllAsync();
@@ -164,7 +164,7 @@ namespace CapStoneAPI.Services
             }
         }
 
-        // 3️⃣ Hospital adds medical notes
+        //  Hospital adds medical notes
         public async Task AddHospitalNotesAsync(int claimId, string notes, string userId)
         {
             var claim = await _claimRepo.GetByIdAsync(claimId)
@@ -195,7 +195,7 @@ namespace CapStoneAPI.Services
                 claim.ClaimsTableId);
         }
 
-        // 4️⃣ Claims Officer review
+        //  Claims Officer review
         public async Task ReviewClaimAsync(int claimId, ClaimReviewDto dto, string officerId)
         {
             var claim = await _claimRepo.GetByIdAsync(claimId)

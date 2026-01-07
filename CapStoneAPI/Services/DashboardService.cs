@@ -38,7 +38,7 @@ namespace CapStoneAPI.Services
             };
         }
 
-        // Hospital Summary
+        // 1.1 Hospital Summary
         public async Task<HospitalSummaryDto> GetHospitalSummaryAsync(string userId)
         {
             var user = await _userRepo.GetByIdAsync(userId)
@@ -102,7 +102,7 @@ namespace CapStoneAPI.Services
                 .ToListAsync();
         }
 
-        // 5️⃣ Claims by hospital
+        // 5️ Claims by hospital
         public async Task<List<ClaimsByHospitalDto>> GetClaimsByHospitalAsync()
         {
             return await _context.Claims
@@ -117,7 +117,7 @@ namespace CapStoneAPI.Services
         }
         
         
-        // 6️⃣ High Value Claims (Utilization > 70%)
+        // 6️ High Value Claims (Utilization > 70%)
         public async Task<List<HighValueClaimDto>> GetHighValueClaimsAsync()
         {
             var policies = await _context.Policies

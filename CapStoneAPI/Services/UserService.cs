@@ -101,7 +101,7 @@ public class UserService : IUserService
             UserName = dto.Email,
             FullName = dto.FullName,
             IsActive = true,
-            HospitalId = dto.HospitalId   //  LINK HERE
+            HospitalId = dto.HospitalId   
         };
 
         var result = await _userManager.CreateAsync(user, dto.Password);

@@ -91,7 +91,13 @@ export class LoginComponent {
       },
       error: (err) => {
         this.isLoading = false;
-        const errorMessage = err.error?.message || 'Invalid email or password';
+        let errorMessage = 'Invalid email or password';
+
+        if (typeof err.error === 'string') {
+          errorMessage = err.error;
+        } else if (err.error?.message) {
+          errorMessage = err.error.message;
+        }
 
         this.snackBar.open(errorMessage, 'Close', {
           duration: 5000,

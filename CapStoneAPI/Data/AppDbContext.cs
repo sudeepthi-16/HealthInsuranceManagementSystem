@@ -87,7 +87,7 @@ namespace CapStoneAPI.Data
             //Hospital -> User
             modelBuilder.Entity<Hospital>()
                 .HasOne(h => h.User)
-                .WithMany()                    //  important to allow creation of user n hospital at once
+                .WithMany()                    //  important to allow creation of user n hospital at once -> changed
                 .HasForeignKey(h => h.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -96,6 +96,12 @@ namespace CapStoneAPI.Data
     .HasIndex(u => u.CustomerCode)
     .IsUnique()
     .HasFilter("[CustomerCode] IS NOT NULL");
+            modelBuilder.Entity<ClaimDocument>()
+    .HasOne(cd => cd.Claim)
+    .WithMany(c => c.Documents)
+    .HasForeignKey(cd => cd.ClaimsTableId)
+    .OnDelete(DeleteBehavior.Cascade);
+
 
 
         }

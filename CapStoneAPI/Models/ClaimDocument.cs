@@ -12,10 +12,10 @@ namespace CapStoneAPI.Models
         public string FileName { get; set; }
         [Required]
         public string FilePath { get; set; } // Server path
-        public string UploadedBy { get; set; } // Username or ID of uploader (Hospital Manager)
+        public string UploadedBy { get; set; } 
         public DateTime UploadDate { get; set; } = DateTime.Now;
 
-        //[ForeignKey("ClaimsTableId")]
+        [ForeignKey("ClaimsTableId")]
         public ClaimsTable Claim { get; set; }
     }
 }

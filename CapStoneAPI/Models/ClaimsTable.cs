@@ -23,5 +23,6 @@ namespace CapStoneAPI.Models
         public Policy Policy { get; set; }
         public Hospital Hospital { get; set; }
         public ApplicationUser ReviewedByUser { get; set; }
+        public ICollection<ClaimDocument> Documents { get; set; }
     }
 }
