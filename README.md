@@ -50,12 +50,12 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
 2.  **Configuration**: Open `appsettings.json` and verify the Connection String and JWT settings.
     ```json
     "ConnectionStrings": {
-      "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SmartHealthInsuranceDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+       "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CapStoneDb;Integrated Security=True;Connect Timeout=30;"
     },
     "Jwt": {
-      "Key": "YourSuperSecretKey...",
-      "Issuer": "http://localhost:7250",
-      "Audience": "http://localhost:4200"
+      "Key": "THIS_IS_A_SUPER_LONG_HIGHLY_SECURE_SECRET_KEY_123456789",
+      "Issuer": "Capstone Insurance",
+      "Audience": "Market Users"
     }
     ```
 
@@ -65,8 +65,9 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
     dotnet build
     ```
 
-4.  **Database Migration**: Apply migrations to create the database schema.
+4.  **Database Migration**: Add intial Migration and apply migrations to create the database schema.
     ```bash
+    dotnet ef migrations add InitialCreate
     dotnet ef database update
     ```
 This will:
@@ -137,9 +138,11 @@ Password: Pass@123
 │   ├── Repositories/                # Data Access Layer (Interfaces + Implementations)
 │   │   ├── Interfaces/
 │   │   └── UserRepository.cs
+│   │   └── etc...
 │   ├── Services/                    # Business Logic Layer
 │   │   ├── Interfaces/
 │   │   └── UserService.cs
+│   │   └── etc...
 │   ├── DTOs/                        # Request & Response DTOs
 │   ├── Program.cs                   # App Configuration & Middleware
 │   └── appsettings.json
@@ -151,7 +154,9 @@ Password: Pass@123
     │   │   │   ├── admin/
     │   │   │   ├── agent/
     │   │   │   ├── customer/
-    │   │   │   ├── hospital/
+    │   │   │   ├── hospital-manager/
+    │   │   │   ├── officer/
+    │   │   │   ├── public/
     │   │   │   └── shared/
     │   │   │
     │   │   ├── services/             # HTTP Services (API calls)
@@ -159,6 +164,7 @@ Password: Pass@123
     │   │   │   ├── policy.service.ts
     │   │   │   ├── claim.service.ts
     │   │   │   └── payment.service.ts
+    │   │   │   └── etc...
     │   │   │
     │   │   ├── guards/               # Route Guards
     │   │   │   ├── auth.guard.ts
@@ -172,12 +178,14 @@ Password: Pass@123
     │   │   │   ├── policy.model.ts
     │   │   │   ├── claim.model.ts
     │   │   │   └── payment.model.ts
+    │   │   │   └── etc...
     │   │   │
     │   │   ├── app.routes.ts
     │   │   ├── app.config.ts
     │   │   └── app.component.ts
     │   │
-    │   └── environments/             # environment.ts 
+    │   └── environments/
+    │   │   └── environment.ts
     │
     └── angular.json
 
