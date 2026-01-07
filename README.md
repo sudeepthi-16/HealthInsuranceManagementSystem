@@ -1,6 +1,4 @@
-# HealthInsuranceManagementSystem
-
-# Smart Health Insurance Management System
+# Smart Health Insurance Management System - Capstone Insurance
 
 A comprehensive health insurance management solution featuring a modern Angular frontend and a robust .NET Web API backend. The system facilitates policy management, claims processing, and user administration for Admins, Hospital Managers, Insurance Agents, and Customers.
 
@@ -71,6 +69,15 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
     ```bash
     dotnet ef database update
     ```
+This will:
+Create the database if it does not exist
+Apply all pending migrations
+Create Identity, domain, and supporting tables
+Prepare the database for seeding.
+
+After migrations:
+Default roles and users are automatically seeded in Development mode only
+Admin and demo customer accounts are created via the DataSeeder
 
 5.  **Run the API**:
     ```bash
@@ -100,12 +107,13 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
 
 ## 🧪 Running Tests
 
-### Backend Tests
+### Backend Tests 
 ```bash
 cd CapStoneAPI
 dotnet test
 ```
-### Seeded Data
+This runs the unit testcases and give the output of no of passed, failed and skipped test cases.
+## 🌱 Seeded Data
 
 In the DataSeeder (Dev env only) an admin(Full Name: System Admin) is created by default with the below credentials:
 ```
@@ -116,7 +124,7 @@ Admin can be uses to login and he can create the other users, customer can self 
 
 A customer (Full Name: Rahul Dravid) by default is also created whos policy end date has passed (to show expired status) his credentials are:
 ```
-Email : cust1@chk.co
+Email : cust1@chk.com
 Password: Pass@123
 ```
 ## 🏗 Project Structure
