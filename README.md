@@ -138,9 +138,11 @@ Password: Pass@123
 │   ├── Repositories/                # Data Access Layer (Interfaces + Implementations)
 │   │   ├── Interfaces/
 │   │   └── UserRepository.cs
+│   │   └── etc...
 │   ├── Services/                    # Business Logic Layer
 │   │   ├── Interfaces/
 │   │   └── UserService.cs
+│   │   └── etc...
 │   ├── DTOs/                        # Request & Response DTOs
 │   ├── Program.cs                   # App Configuration & Middleware
 │   └── appsettings.json
@@ -152,7 +154,9 @@ Password: Pass@123
     │   │   │   ├── admin/
     │   │   │   ├── agent/
     │   │   │   ├── customer/
-    │   │   │   ├── hospital/
+    │   │   │   ├── hospital-manager/
+    │   │   │   ├── officer/
+    │   │   │   ├── public/
     │   │   │   └── shared/
     │   │   │
     │   │   ├── services/             # HTTP Services (API calls)
@@ -160,6 +164,7 @@ Password: Pass@123
     │   │   │   ├── policy.service.ts
     │   │   │   ├── claim.service.ts
     │   │   │   └── payment.service.ts
+    │   │   │   └── etc...
     │   │   │
     │   │   ├── guards/               # Route Guards
     │   │   │   ├── auth.guard.ts
@@ -173,12 +178,14 @@ Password: Pass@123
     │   │   │   ├── policy.model.ts
     │   │   │   ├── claim.model.ts
     │   │   │   └── payment.model.ts
+    │   │   │   └── etc...
     │   │   │
     │   │   ├── app.routes.ts
     │   │   ├── app.config.ts
     │   │   └── app.component.ts
     │   │
-    │   └── environments/             # environment.ts 
+    │   └── environments/
+    │   │   └── environment.ts
     │
     └── angular.json
 
