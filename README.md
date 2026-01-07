@@ -50,12 +50,12 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
 2.  **Configuration**: Open `appsettings.json` and verify the Connection String and JWT settings.
     ```json
     "ConnectionStrings": {
-      "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SmartHealthInsuranceDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+       "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CapStoneDb;Integrated Security=True;Connect Timeout=30;"
     },
     "Jwt": {
-      "Key": "YourSuperSecretKey...",
-      "Issuer": "http://localhost:7250",
-      "Audience": "http://localhost:4200"
+      "Key": "THIS_IS_A_SUPER_LONG_HIGHLY_SECURE_SECRET_KEY_123456789",
+      "Issuer": "Capstone Insurance",
+      "Audience": "Market Users"
     }
     ```
 
@@ -65,8 +65,9 @@ Ensure your SQL Server is running. The application uses Entity Framework Core to
     dotnet build
     ```
 
-4.  **Database Migration**: Apply migrations to create the database schema.
+4.  **Database Migration**: Add intial Migration and apply migrations to create the database schema.
     ```bash
+    dotnet ef migrations add InitialCreate
     dotnet ef database update
     ```
 This will:
